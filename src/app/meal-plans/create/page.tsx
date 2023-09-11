@@ -1,5 +1,6 @@
 "use client"
 
+import PageContent from "@/components/common/page-content/PageContent";
 import PageHeader from "@/components/common/page-header/PageHeader"
 import { Check } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
@@ -45,6 +46,10 @@ const MealPlanCreatePage = () => {
         title='New meal plan'
         subTitle='Generate and save a new meal plan with ease.'
       />
+
+      <PageContent>
+        HELLO
+      </PageContent>
     </main>
   )
 }
