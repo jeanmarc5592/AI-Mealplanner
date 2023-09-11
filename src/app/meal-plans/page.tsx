@@ -23,7 +23,11 @@ const Actions = () => {
 const MealPlansOverviewPage = () => {
   return (
     <main>
-      <PageHeader actions={<Actions />} />
+      <PageHeader 
+        title='Your meal plans'
+        subTitle='A quick overview of all your saved meal plans.'
+        actions={<Actions />}
+      />
     </main>
   )
 }
