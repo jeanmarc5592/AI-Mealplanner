@@ -1,10 +1,15 @@
 import ContentCard from "../common/content-card/ContentCard"
+import InputField from "../common/input-field/InputField"
 
 const NewMealPlanForm = () => {
   return (
     <form>
       <ContentCard title="General">
-        General Info
+        <InputField 
+          label="Name" 
+          required
+          sx={{ width: '50%'}}
+        />
       </ContentCard>
     </form>
   )
