@@ -1,8 +1,7 @@
-import { Box, Checkbox, Chip, FormControlLabel, FormGroup, FormLabel, InputAdornment, ListItemText, MenuItem, OutlinedInput, Select, Switch, Typography } from "@mui/material"
+import { FormGroup, FormLabel, InputAdornment, Typography } from "@mui/material"
 import ContentCard from "../common/content-card/ContentCard"
 import InputField from "../common/input-field/InputField"
 import Row from "../common/row/Row"
-import theme from "../theme/Theme"
 
 const NewMealPlanForm = () => {
   return (
