@@ -1,12 +1,13 @@
 import { Grid } from "@mui/material"
+import NewMealPlanForm from "./NewMealPlanForm"
 
 const NewMealPlan = () => {
   return (
-    <Grid container>
-      <Grid item xs={8}>
-        Form
+    <Grid container spacing={12}>
+      <Grid item xs={6}>
+        <NewMealPlanForm />
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={6}>
         Result
       </Grid>
     </Grid>
