@@ -2,6 +2,7 @@
 
 import PageContent from "@/components/common/page-content/PageContent";
 import PageHeader from "@/components/common/page-header/PageHeader"
+import NewMealPlan from "@/components/meal-plans/NewMealPlan";
 import { Check } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation"
@@ -48,7 +49,7 @@ const MealPlanCreatePage = () => {
       />
 
       <PageContent>
-        HELLO
+        <NewMealPlan />
       </PageContent>
     </main>
   )
