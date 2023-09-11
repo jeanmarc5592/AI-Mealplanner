@@ -1,10 +1,10 @@
 import { TextField, TextFieldProps } from '@mui/material'
-import React from 'react'
 
 const InputField: React.FC<TextFieldProps> = (props) => {
   return (
     <TextField 
       size="small" 
+      margin="dense"
       sx={{
         "& .MuiOutlinedInput-root:hover": {
           "& > fieldset": {
