@@ -3,6 +3,7 @@
 import PageContent from "@/components/common/page-content/PageContent";
 import PageHeader from "@/components/common/page-header/PageHeader"
 import NewMealPlan from "@/components/meal-plans/NewMealPlan";
+import { MealPlansLink } from "@/lib/constants";
 import { Check } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation"
@@ -11,7 +12,7 @@ const Actions = () => {
   const router = useRouter();
 
   const handleCancel = () => {
-    router.back();
+    router.push(MealPlansLink.href);
   };
 
   const handleSave = () => {
@@ -47,7 +48,6 @@ const MealPlanCreatePage = () => {
         title='New meal plan'
         subTitle='Generate and save a new meal plan with ease.'
       />
-
       <PageContent>
         <NewMealPlan />
       </PageContent>
