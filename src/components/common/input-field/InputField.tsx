@@ -1,8 +1,10 @@
 import { TextField, TextFieldProps } from '@mui/material'
+import { forwardRef } from 'react'
 
-const InputField: React.FC<TextFieldProps> = (props) => {
+const InputField: React.FC<TextFieldProps> = forwardRef((props, ref) => {
   return (
     <TextField 
+      ref={ref}
       size="small" 
       margin="dense"
       sx={{
@@ -18,9 +20,19 @@ const InputField: React.FC<TextFieldProps> = (props) => {
           }
         }
       }} 
+      FormHelperTextProps={{
+        color: "red",
+        sx: {
+          '&.MuiFormHelperText-root': {
+            marginLeft: 1
+          }
+        }
+      }}
       {...props}
     />
   )
-}
+});
+
+InputField.displayName = "InputField";
 
 export default InputField
