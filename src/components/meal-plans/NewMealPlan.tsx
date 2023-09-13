@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material"
 import NewMealPlanForm from "./NewMealPlanForm"
+import NewMealPlanResult from "./NewMealPlanResult"
 
 const NewMealPlan = () => {
   return (
@@ -7,8 +8,8 @@ const NewMealPlan = () => {
       <Grid item xs={6}>
         <NewMealPlanForm />
       </Grid>
-      <Grid item xs={6}>
-        Result
+      <Grid item xs={6} sx={{ marginTop: "4rem" }}>
+        <NewMealPlanResult />
       </Grid>
     </Grid>
   )

@@ -5,8 +5,9 @@ import Row from "../common/row/Row"
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { AutoAwesome } from "@mui/icons-material";
 
-const formSchema = z.object({
+export const formSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
   description: z.string().optional(),
   calories: z.string().min(1, "Calories are required"),
@@ -22,10 +23,10 @@ const formSchema = z.object({
   foodDislikes: z.string().optional(),
 });
 
-type FormSchemaType = z.infer<typeof formSchema>;
+export type FormSchemaType = z.infer<typeof formSchema>;
 
 const NewMealPlanForm = () => {
-  const { register, handleSubmit, formState: { errors, isSubmitting }} = useForm<FormSchemaType>({
+  const { register, handleSubmit, formState: { errors }} = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
   })
 
@@ -35,6 +36,21 @@ const NewMealPlanForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <Button
+        type="submit"
+        variant="contained"
+        color="success"
+        sx={{
+          '&.MuiButtonBase-root': {
+            color: 'white',
+            marginBottom: '2rem'
+          }
+        }}
+        startIcon={<AutoAwesome />}
+      >
+        Generate
+      </Button>
+      
       <ContentCard title="General">
         <Row>
           <FormGroup sx={{ width: '50%'}}>

@@ -13,7 +13,10 @@ const theme = createTheme({
     primary: {
       main: '#2C2C54',
       light: '#3D3F72',
-    }
+    },
+    success: {
+      main: '#57CB82',
+    },
   },
   typography: {
     fontFamily: roboto.style.fontFamily,

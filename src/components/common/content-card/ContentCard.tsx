@@ -6,7 +6,7 @@ export interface ContentCardProps {
   children: React.ReactNode;
 }
 
-const ContentCard: React.FC<ContentCardProps> = ({ title, subTitle, children}) => {
+const ContentCard: React.FC<ContentCardProps> = ({ title, subTitle, children }) => {
   return (
     <Card sx={{ padding: 0, marginBottom: "3rem", boxShadow: "8.5px 8.5px 5px 0px rgba(0,0,0,0.05)", border: "0.5px solid lightgrey" }}>
       <CardHeader 
