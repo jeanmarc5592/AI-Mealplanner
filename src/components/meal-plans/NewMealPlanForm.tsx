@@ -39,7 +39,7 @@ const NewMealPlanForm = () => {
       const data = await response.json();
       // TODO: Trigger notification
       // TODO: Add to respose to store
-      console.log(data);
+      console.log(JSON.parse(data));
     } catch (error) {
       // TODO: Trigger notification
       console.error(error);
