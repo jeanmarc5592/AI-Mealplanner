@@ -12,8 +12,7 @@ export class OpenAIConnection {
 
   private constructor() {
     OpenAIConnection.client = new OpenAI({
-      // TODO: Move to .env
-      apiKey: "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"
+      apiKey: process.env.OPEN_AI_API_KEY
     });
   }
 
@@ -26,7 +25,6 @@ export class OpenAIConnection {
 
   public async generateAnswer(prompt: string) {
     const result = await OpenAIConnection.client.chat.completions.create({
-      //max_tokens: 150,
       messages: [{ role: 'user', content: prompt }],
       model: 'gpt-3.5-turbo',
     });
