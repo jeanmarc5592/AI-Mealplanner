@@ -14,9 +14,8 @@ export const newMealPlanFormSchema = z.object({
   carbs: z.string().min(1, "Carbs are required"),
   proteins: z.string().min(1, "Proteins are required"),
   fats: z.string().min(1, "Fats are required"),
-  meals: z.string().min(1, "Meals are required"),
-  totalDays: z.string().min(1, "Total days are required"),
-  snacks: z.string().optional(),
+  meals: z.string().min(1, "Meals are required").max(5, "Maximum 5 meals are allowed"),
+  totalDays: z.string().min(1, "Total days are required").max(5, "Maximum 5 days are allowed"),
   dietaryPreferences: z.string().optional(),
   allergies: z.string().optional(),
   foodLikes: z.string().optional(),
@@ -34,12 +33,12 @@ const NewMealPlanForm = () => {
     const serializedData = JSON.stringify(data);
 
     try {
-      // TODO: Use axios
+      // TODO: Use axios or react-query
+      // TODO: Add loading state
       const response = await fetch('http://localhost:3000/api/meal-plans/create', { method: 'POST', body: serializedData });
       const data = await response.json();
       // TODO: Trigger notification
       // TODO: Add to respose to store
-      console.log(JSON.parse(data));
     } catch (error) {
       // TODO: Trigger notification
       console.error(error);
@@ -197,7 +196,7 @@ const NewMealPlanForm = () => {
               type="number"
               placeholder='e.g. "3"' 
               InputProps={{
-                inputProps: { min: 1 }
+                inputProps: { min: 1, max: 5 }
               }}
               error={!!errors.meals}
               helperText={errors.meals?.message}
@@ -212,28 +211,11 @@ const NewMealPlanForm = () => {
               type="number"
               placeholder='e.g. "5"' 
               InputProps={{
-                inputProps: { min: 1 }
+                inputProps: { min: 1, max: 5 }
               }}
               error={!!errors.totalDays}
               helperText={errors.totalDays?.message}
               {...register("totalDays")}
-            />
-          </FormGroup>
-        </Row>
-        <Row>
-          <FormGroup sx={{ width: '45%'}}>
-            <FormLabel sx={{ color: 'primary.main' }}>
-              Snacks per day
-            </FormLabel>
-            <InputField 
-              type="number"
-              placeholder='e.g. "1"' 
-              InputProps={{
-                inputProps: { min: 1 }
-              }}
-              error={!!errors.snacks}
-              helperText={errors.snacks?.message}
-              {...register("snacks")}
             />
           </FormGroup>
         </Row>
