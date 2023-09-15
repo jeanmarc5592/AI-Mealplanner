@@ -6,6 +6,8 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AutoAwesome } from "@mui/icons-material";
+import { useAppDispatch } from "@/hooks/store";
+import { MealPlan, addMealPlan } from "@/store/slices/mealPlanSlice";
 
 export const newMealPlanFormSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
@@ -27,7 +29,8 @@ export type NewMealPlanFormSchemaType = z.infer<typeof newMealPlanFormSchema>;
 const NewMealPlanForm = () => {
   const { register, handleSubmit, formState: { errors }} = useForm<NewMealPlanFormSchemaType>({
     resolver: zodResolver(newMealPlanFormSchema),
-  })
+  });
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<NewMealPlanFormSchemaType> = async (data) => {
     const serializedData = JSON.stringify(data);
@@ -36,9 +39,9 @@ const NewMealPlanForm = () => {
       // TODO: Use axios or react-query
       // TODO: Add loading state
       const response = await fetch('http://localhost:3000/api/meal-plans/create', { method: 'POST', body: serializedData });
-      const data = await response.json();
+      const data: { mealPlan: MealPlan } = await response.json();
       // TODO: Trigger notification
-      // TODO: Add to respose to store
+      dispatch(addMealPlan(data.mealPlan));
     } catch (error) {
       // TODO: Trigger notification
       console.error(error);
