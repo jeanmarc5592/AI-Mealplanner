@@ -7,7 +7,7 @@ export class MealPlansApiService {
     const openAI = OpenAIConnection.getInstance();
     const answer = await openAI.generateAnswer(prompt);
 
-    const result = answer?.choices?.[0]?.message?.content || "No result";
+    const result = answer?.choices?.[0]?.message?.content || "{ mealPlan: {}}";
 
     return JSON.parse(result);
   }
@@ -35,7 +35,7 @@ export class MealPlansApiService {
         totalFats: "sum of all fats from all meals of this day",
         meals: [{
           name: "Meal 1",
-          recipe: "Scrambled Tofu",
+          recipe: "name of the dish",
           calories: "amount of calories for this meal",
           carbs: "amount of carbs for this meal",
           proteins: "amount of proteins for this meal",
