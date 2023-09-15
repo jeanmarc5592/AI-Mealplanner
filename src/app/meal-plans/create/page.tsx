@@ -3,16 +3,20 @@
 import PageContent from "@/components/common/page-content/PageContent";
 import PageHeader from "@/components/common/page-header/PageHeader"
 import NewMealPlan from "@/components/meal-plans/NewMealPlan";
+import { useAppDispatch } from "@/hooks/store";
 import { MealPlansLink } from "@/lib/constants";
+import { addMealPlan } from "@/store/slices/mealPlanSlice";
 import { Check } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation"
 
 const Actions = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleCancel = () => {
     router.push(MealPlansLink.href);
+    dispatch(addMealPlan(undefined));
   };
 
   const handleSave = () => {
