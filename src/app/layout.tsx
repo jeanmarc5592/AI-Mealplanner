@@ -3,6 +3,7 @@ import ThemeRegistry from '@/components/theme/ThemeRegistry'
 import { Box } from '@mui/material'
 import { DRAWER_WIDTH_DESKTOP } from '@/lib/constants'
 import type { Metadata } from 'next'
+import StoreProvider from '@/components/store/StoreProvider'
 
 export const metadata: Metadata = {
   title: 'Meal AI',
@@ -17,12 +18,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry>
-        <MainDrawer width={DRAWER_WIDTH_DESKTOP} />
-        <Box sx={{ marginLeft: DRAWER_WIDTH_DESKTOP, height: '100vh', padding: '4rem 2rem' }}>
-          {children}
-        </Box>
-        </ThemeRegistry>
+        <StoreProvider>
+          <ThemeRegistry>
+            <MainDrawer width={DRAWER_WIDTH_DESKTOP} />
+            <Box sx={{ marginLeft: DRAWER_WIDTH_DESKTOP, height: '100vh', padding: '4rem 2rem' }}>
+              {children}
+            </Box>
+          </ThemeRegistry>
+        </StoreProvider>
       </body>
     </html>
   )
