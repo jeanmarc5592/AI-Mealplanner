@@ -7,7 +7,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AutoAwesome } from "@mui/icons-material";
 import { useAppDispatch } from "@/hooks/store";
-import { MealPlan, addMealPlan } from "@/store/slices/mealPlanSlice";
+import { MealPlan, addMealPlan, onMealPlanLoading } from "@/store/slices/mealPlanSlice";
+import { useState } from "react";
 
 export const newMealPlanFormSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
@@ -31,13 +32,16 @@ const NewMealPlanForm = () => {
     resolver: zodResolver(newMealPlanFormSchema),
   });
   const dispatch = useAppDispatch();
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
   const onSubmit: SubmitHandler<NewMealPlanFormSchemaType> = async (data) => {
     const serializedData = JSON.stringify(data);
+    
+    dispatch(onMealPlanLoading(true));
+    setIsSubmitDisabled(true);
 
     try {
       // TODO: Use axios or react-query
-      // TODO: Add loading state
       const response = await fetch('http://localhost:3000/api/meal-plans/create', { method: 'POST', body: serializedData });
       const data: { mealPlan: MealPlan } = await response.json();
       // TODO: Trigger notification
@@ -45,6 +49,9 @@ const NewMealPlanForm = () => {
     } catch (error) {
       // TODO: Trigger notification
       console.error(error);
+    } finally {
+      dispatch(onMealPlanLoading(false));
+      setIsSubmitDisabled(false);
     }
   };
 
@@ -61,6 +68,7 @@ const NewMealPlanForm = () => {
           }
         }}
         startIcon={<AutoAwesome />}
+        disabled={isSubmitDisabled}
       >
         Generate
       </Button>

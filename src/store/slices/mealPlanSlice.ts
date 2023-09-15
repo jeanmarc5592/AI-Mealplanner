@@ -2,28 +2,34 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
-export interface MealPlan {
+type MealPlanDay = {
   day: string;
-    totalCalories: number;
-    totalCarbs: number;
-    totalProeteins: number;
-    totalFats: number;
+    totalCalories: string;
+    totalCarbs: string;
+    totalProteins: string;
+    totalFats: string;
     meals: {
       name: string;
       recipe: string;
-      calories: number;
-      carbs: number;
-      proteins: number;
-      fats: number
+      calories: string;
+      carbs: string;
+      proteins: string;
+      fats: string
     }[];
 }
 
+export type MealPlan = MealPlanDay[];
+
 interface MealPlanState {
   mealPlan?: MealPlan
+  isLoading: boolean;
+  error: string;
 }
 
 const initialState: MealPlanState = {
   mealPlan: undefined,
+  isLoading: false,
+  error: "",
 }
 
 export const mealPlanSlice = createSlice({
@@ -32,10 +38,16 @@ export const mealPlanSlice = createSlice({
   reducers: {
     addMealPlan: (state, action: PayloadAction<MealPlan>) => {
       state.mealPlan = action.payload;
+    },
+    onMealPlanLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
+    onMealPlanError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
     }
   }
 });
 
-export const { addMealPlan } = mealPlanSlice.actions;
+export const { addMealPlan, onMealPlanLoading, onMealPlanError } = mealPlanSlice.actions;
 
 export default mealPlanSlice.reducer;
