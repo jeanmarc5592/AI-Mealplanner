@@ -8,17 +8,21 @@ const NewMealPlanResult = () => {
 
   return (
     <ContentCard title="Result">
-      {isMealPlanLoading && <CircularProgress />} 
+      {isMealPlanLoading && (
+        <Box sx={{ padding: "1rem" }}>
+          <CircularProgress />
+        </Box>
+      )} 
 
       {!mealPlan && !isMealPlanLoading && (
         <Typography color="primary">
-          Your meal plan is waiting to be generated...
+          Hit the &apos;GENERATE&apos; button to receive your new meal plan...
         </Typography>
       )}
 
       {mealPlan && !isMealPlanLoading && (
         mealPlan.map((day, index) => {
-          const isLastElement = index === day.meals.length - 1;
+          const isLastElement = index === mealPlan.length - 1;
 
           return (
             <Box 

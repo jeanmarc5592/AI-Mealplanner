@@ -36,7 +36,7 @@ export const mealPlanSlice = createSlice({
   name: 'mealPlan',
   initialState,
   reducers: {
-    addMealPlan: (state, action: PayloadAction<MealPlan>) => {
+    addMealPlan: (state, action: PayloadAction<MealPlan | undefined>) => {
       state.mealPlan = action.payload;
     },
     onMealPlanLoading: (state, action: PayloadAction<boolean>) => {
