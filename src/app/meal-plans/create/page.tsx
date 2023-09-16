@@ -9,39 +9,61 @@ import { addMealPlan } from "@/store/slices/mealPlanSlice";
 import { Check } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import { useRouter } from "next/navigation"
+import { useMutation } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
+import { useState } from "react";
+import { LoadingButton } from "@mui/lab";
 
 const Actions = () => {
+  const [isSaving, setIsSaving] = useState(false); 
   const router = useRouter();
   const dispatch = useAppDispatch();
   const mealPlan = useAppSelector((state) => state.mealPlans.mealPlan);
+  const saveMealPlan = useMutation(api.mealPlans.createMealPlan);
 
   const handleCancel = () => {
     router.push(MealPlansLink.href);
     dispatch(addMealPlan(undefined));
   };
 
-  const handleSave = () => {
-    // TODO: Handle Save
-    alert('WIP: SAVE!');
+  const handleSave = async () => {
+    if (!mealPlan) {
+      return;
+    }
+
+    setIsSaving(true);
+
+    try {
+      const result = await saveMealPlan(mealPlan);
+      // TODO: Add Response Status check
+      // TODO: Route automatically to meal plan detail page (id from result)
+      console.log(result);
+    } catch (error) {
+      // TODO: Set Error Notification
+      console.error(error);
+    } finally {
+      setIsSaving(false);
+    }
   }
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <Button 
+      <Button
         variant='outlined' 
         sx={{ marginRight: '1rem' }}
         onClick={handleCancel}
       >
         Cancel
       </Button>
-      <Button 
+      <LoadingButton
         variant='contained' 
         startIcon={<Check />}
         onClick={handleSave}
         disabled={!mealPlan}
-        >
-          Save meal plan
-      </Button>
+        loading={isSaving}
+      >
+        Save meal plan
+      </LoadingButton>
     </Box>
   )
 }
