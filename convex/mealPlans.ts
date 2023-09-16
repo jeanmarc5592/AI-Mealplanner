@@ -1,4 +1,4 @@
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
 export const createMealPlan = mutation({
@@ -25,7 +25,15 @@ export const createMealPlan = mutation({
   ))
   },
   handler: async (ctx, args) => {
-    const mealPlanId = await ctx.db.insert("mealPlans", args);
-    return mealPlanId;
+    return await ctx.db.insert("mealPlans", args);
   }
-})
+});
+
+export const getSingleMealPlan = query({
+  args: {
+    id: v.id("mealPlans"),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.id)
+  },
+});

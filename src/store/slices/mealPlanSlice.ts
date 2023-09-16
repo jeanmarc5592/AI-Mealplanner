@@ -1,4 +1,3 @@
-import { NewMealPlanFormSchemaType } from "@/components/meal-plans/MealPlanForm";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -20,6 +19,7 @@ export type MealPlanDay = {
 
 export type MealPlan = {
   _id?: string;
+  _creationTime?: string;
   name: string;
   content: MealPlanDay[];
 };

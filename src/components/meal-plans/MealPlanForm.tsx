@@ -13,7 +13,6 @@ import { setErrorNotification, setSuccessNotification } from "@/store/slices/not
 
 export const newMealPlanFormSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
-  description: z.string().optional(),
   calories: z.string().min(1, "Calories are required"),
   carbs: z.string().min(1, "Carbs are required"),
   proteins: z.string().min(1, "Proteins are required"),
@@ -82,7 +81,7 @@ const MealPlanForm = () => {
       
       <ContentCard title="General">
         <Row>
-          <FormGroup sx={{ width: '50%'}}>
+          <FormGroup sx={{ width: '45%'}}>
             <FormLabel sx={{ color: 'primary.main' }} required>
               Name
             </FormLabel>
@@ -91,21 +90,6 @@ const MealPlanForm = () => {
               error={!!errors.name}
               helperText={errors.name?.message}
               {...register("name")}
-            />
-          </FormGroup>
-        </Row>
-        <Row>
-          <FormGroup sx={{ width: '100%'}}>
-            <FormLabel sx={{ color: 'primary.main' }}>
-              Description
-            </FormLabel>
-            <InputField 
-              placeholder="Description" 
-              multiline
-              rows={8}
-              error={!!errors.description}
-              helperText={errors.description?.message}
-              {...register("description")}
             />
           </FormGroup>
         </Row>
