@@ -1,4 +1,4 @@
-import { NewMealPlanFormSchemaType } from "@/components/meal-plans/NewMealPlanForm";
+import { NewMealPlanFormSchemaType } from "@/components/meal-plans/MealPlanForm";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 

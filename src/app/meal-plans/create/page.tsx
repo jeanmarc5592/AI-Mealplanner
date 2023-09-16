@@ -2,18 +2,19 @@
 
 import PageContent from "@/components/common/page-content/PageContent";
 import PageHeader from "@/components/common/page-header/PageHeader"
-import NewMealPlan from "@/components/meal-plans/NewMealPlan";
 import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import { MealPlansLink } from "@/lib/constants";
 import { addMealPlan } from "@/store/slices/mealPlanSlice";
 import { Check } from "@mui/icons-material";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { useRouter } from "next/navigation"
 import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { useState } from "react";
 import { LoadingButton } from "@mui/lab";
 import { setErrorNotification } from "@/store/slices/notificationSlice";
+import MealPlanForm from "@/components/meal-plans/MealPlanForm";
+import MealPlanResult from "@/components/meal-plans/MealPlanResult";
 
 const Actions = () => {
   const [isSaving, setIsSaving] = useState(false); 
@@ -77,7 +78,14 @@ const MealPlanCreatePage = () => {
         subTitle='Generate and save a new meal plan with ease.'
       />
       <PageContent>
-        <NewMealPlan />
+        <Grid container spacing={12}>
+          <Grid item xs={6}>
+            <MealPlanForm />
+          </Grid>
+          <Grid item xs={6} sx={{ marginTop: "4rem" }}>
+            <MealPlanResult />
+          </Grid>
+        </Grid>
       </PageContent>
     </main>
   )

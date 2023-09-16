@@ -28,7 +28,7 @@ export const newMealPlanFormSchema = z.object({
 
 export type NewMealPlanFormSchemaType = z.infer<typeof newMealPlanFormSchema>;
 
-const NewMealPlanForm = () => {
+const MealPlanForm = () => {
   const { register, handleSubmit, formState: { errors }} = useForm<NewMealPlanFormSchemaType>({
     resolver: zodResolver(newMealPlanFormSchema),
   });
@@ -298,4 +298,4 @@ const NewMealPlanForm = () => {
   )
 }
 
-export default NewMealPlanForm
+export default MealPlanForm

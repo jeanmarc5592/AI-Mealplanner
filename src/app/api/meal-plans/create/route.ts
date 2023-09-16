@@ -1,4 +1,4 @@
-import { NewMealPlanFormSchemaType } from "@/components/meal-plans/NewMealPlanForm";
+import { NewMealPlanFormSchemaType } from "@/components/meal-plans/MealPlanForm";
 import { NextRequest, NextResponse } from "next/server";
 import { MealPlansApiService } from "../service";
 

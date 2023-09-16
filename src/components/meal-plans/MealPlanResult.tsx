@@ -2,7 +2,7 @@ import { Box, CircularProgress, Alert, Typography } from '@mui/material'
 import ContentCard from '../common/content-card/ContentCard'
 import { useAppSelector } from '@/hooks/store'
 
-const NewMealPlanResult = () => {
+const MealPlanResult = () => {
   const mealPlan = useAppSelector((state) => state.mealPlans.mealPlan);
   const isMealPlanLoading = useAppSelector((state) => state.mealPlans.isLoading);
 
@@ -59,4 +59,4 @@ const NewMealPlanResult = () => {
   )
 }
 
-export default NewMealPlanResult
+export default MealPlanResult

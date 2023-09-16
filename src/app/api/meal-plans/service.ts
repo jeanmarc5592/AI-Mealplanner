@@ -1,4 +1,4 @@
-import { NewMealPlanFormSchemaType } from "@/components/meal-plans/NewMealPlanForm";
+import { NewMealPlanFormSchemaType } from "@/components/meal-plans/MealPlanForm";
 import { OpenAIConnection } from "@/lib/openai";
 export class MealPlansApiService {
   async generate(data: NewMealPlanFormSchemaType) {
