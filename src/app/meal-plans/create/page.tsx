@@ -13,6 +13,7 @@ import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { useState } from "react";
 import { LoadingButton } from "@mui/lab";
+import { setErrorNotification } from "@/store/slices/notificationSlice";
 
 const Actions = () => {
   const [isSaving, setIsSaving] = useState(false); 
@@ -34,12 +35,11 @@ const Actions = () => {
     setIsSaving(true);
 
     try {
-      const result = await saveMealPlan(mealPlan);
-      // TODO: Add Response Status check
-      // TODO: Route automatically to meal plan detail page (id from result)
-      console.log(result);
+      const mealPlanId = await saveMealPlan(mealPlan);
+      dispatch(addMealPlan(undefined));
+      router.replace(`${MealPlansLink.href}/${mealPlanId}`);
     } catch (error) {
-      // TODO: Set Error Notification
+      dispatch(setErrorNotification('Something went wrong saving your meal plan. Please try again'));
       console.error(error);
     } finally {
       setIsSaving(false);
