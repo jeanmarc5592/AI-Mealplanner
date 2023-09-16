@@ -7,7 +7,7 @@ export class MealPlansApiService {
     const openAI = OpenAIConnection.getInstance();
     const answer = await openAI.generateAnswer(prompt);
 
-    const result = answer?.choices?.[0]?.message?.content || "{ mealPlan: {}}";
+    const result = answer?.choices?.[0]?.message?.content || "{ mealPlan: undefined}";
 
     return JSON.parse(result);
   }
@@ -49,7 +49,7 @@ export class MealPlansApiService {
     const dietaryPreferencesPrompt = !!dietaryPreferences ? `Dietary preferences are ${dietaryPreferences.replaceAll("\n", ",")}` : "";
     const allergiesPrompt = !!allergies ? `Allergies are ${allergies.replaceAll("\n", ",")}` : "";
     const foodLikesPrompt = !!foodLikes ? `Food likes are ${foodLikes.replaceAll("\n", ",")}` : "";
-    const foodDislikesPrompt = !!foodDislikes ? `Food likes are ${foodDislikes.replaceAll("\n", ",")}` : "";
+    const foodDislikesPrompt = !!foodDislikes ? `Food dislikes are ${foodDislikes.replaceAll("\n", ",")}` : "";
     const resultPrompt = `Do not include any explanations, only provide a RFC8259 compliant JSON response following this format without deviation. ${JSON.stringify(resultStructure)}.`
 
     return `
