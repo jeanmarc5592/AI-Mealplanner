@@ -19,6 +19,7 @@ export type MealPlanDay = {
 }
 
 export type MealPlan = {
+  _id?: string;
   name: string;
   content: MealPlanDay[];
 };
