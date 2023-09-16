@@ -1,7 +1,8 @@
+import { NewMealPlanFormSchemaType } from "@/components/meal-plans/NewMealPlanForm";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-type MealPlanDay = {
+export type MealPlanDay = {
   day: string;
     totalCalories: string;
     totalCarbs: string;
@@ -17,10 +18,13 @@ type MealPlanDay = {
     }[];
 }
 
-export type MealPlan = MealPlanDay[];
+export type MealPlan = {
+  name: string;
+  content: MealPlanDay[];
+};
 
 interface MealPlanState {
-  mealPlan?: MealPlan
+  mealPlan?: MealPlan;
   isLoading: boolean;
   error: string;
 }

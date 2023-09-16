@@ -21,8 +21,8 @@ const NewMealPlanResult = () => {
       )}
 
       {mealPlan && !isMealPlanLoading && (
-        mealPlan.map((day, index) => {
-          const isLastElement = index === mealPlan.length - 1;
+        mealPlan.content.map((day, index) => {
+          const isLastElement = index === mealPlan.content.length - 1;
 
           return (
             <Box 
