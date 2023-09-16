@@ -3,7 +3,7 @@
 import PageContent from "@/components/common/page-content/PageContent";
 import PageHeader from "@/components/common/page-header/PageHeader"
 import NewMealPlan from "@/components/meal-plans/NewMealPlan";
-import { useAppDispatch } from "@/hooks/store";
+import { useAppDispatch, useAppSelector } from "@/hooks/store";
 import { MealPlansLink } from "@/lib/constants";
 import { addMealPlan } from "@/store/slices/mealPlanSlice";
 import { Check } from "@mui/icons-material";
@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation"
 const Actions = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const mealPlan = useAppSelector((state) => state.mealPlans.mealPlan);
 
   const handleCancel = () => {
     router.push(MealPlansLink.href);
@@ -37,6 +38,7 @@ const Actions = () => {
         variant='contained' 
         startIcon={<Check />}
         onClick={handleSave}
+        disabled={!mealPlan}
         >
           Save meal plan
       </Button>
