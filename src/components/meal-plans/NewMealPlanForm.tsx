@@ -46,9 +46,13 @@ const NewMealPlanForm = () => {
 
       if (response.status === 200) {
         const data: { mealPlan: MealPlan } = await response.json();
-        
+
         dispatch(setSuccessNotification("Your meal plan was generated successfully!"));
         dispatch(addMealPlan(data.mealPlan));
+      } 
+
+      if (response.status > 200) {
+        throw new Error(response.statusText);
       }
     } catch (error) {
       dispatch(setErrorNotification("Something went wrong with generating your meal plan. Please try again."))
