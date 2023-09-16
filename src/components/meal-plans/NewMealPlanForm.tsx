@@ -9,6 +9,7 @@ import { AutoAwesome } from "@mui/icons-material";
 import { useAppDispatch } from "@/hooks/store";
 import { MealPlan, addMealPlan, onMealPlanLoading } from "@/store/slices/mealPlanSlice";
 import { useState } from "react";
+import { setErrorNotification, setSuccessNotification } from "@/store/slices/notificationSlice";
 
 export const newMealPlanFormSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
@@ -41,14 +42,16 @@ const NewMealPlanForm = () => {
     setIsSubmitDisabled(true);
 
     try {
-      // TODO: Use axios or react-query
       const response = await fetch('http://localhost:3000/api/meal-plans/create', { method: 'POST', body: serializedData });
-      const data: { mealPlan: MealPlan } = await response.json();
-      // TODO: Trigger notification
-      dispatch(addMealPlan(data.mealPlan));
+
+      if (response.status === 200) {
+        const data: { mealPlan: MealPlan } = await response.json();
+        
+        dispatch(setSuccessNotification("Your meal plan was generated successfully!"));
+        dispatch(addMealPlan(data.mealPlan));
+      }
     } catch (error) {
-      // TODO: Trigger notification
-      console.error(error);
+      dispatch(setErrorNotification("Something went wrong with generating your meal plan. Please try again."))
     } finally {
       dispatch(onMealPlanLoading(false));
       setIsSubmitDisabled(false);
