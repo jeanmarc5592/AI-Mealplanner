@@ -37,3 +37,12 @@ export const getSingleMealPlan = query({
     return await ctx.db.get(args.id)
   },
 });
+
+export const deleteMealPlan = mutation({
+  args: {
+    id: v.id("mealPlans"),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.delete(args.id)
+  },
+});
