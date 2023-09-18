@@ -17,7 +17,7 @@ const MainDrawer: React.FC<MainDrawerProps> = ({ width }) => {
       variant="permanent" 
       sx={{ [`& .MuiDrawer-paper`]: { width, boxSizing: 'border-box', backgroundColor: 'primary.main' }}}
     >
-      <Typography variant="h4" textAlign="center" color="white" marginTop="2rem">
+      <Typography variant="h4" textAlign="center" color="white" marginTop="4rem">
         MEAL AI
       </Typography>
       <Box sx={{ marginTop: '5rem' }}>
@@ -30,6 +30,7 @@ const MainDrawer: React.FC<MainDrawerProps> = ({ width }) => {
                 backgroundColor: link.isActive(pathName) ? 'primary.light' : 'transparent', 
                 padding: '0.75rem 1rem', 
                 marginBottom: '1rem', 
+                textAlign: 'center',
                 ['&:hover']: { 
                   backgroundColor: 'primary.light', 
                   transition: 'all 0.3s' 
