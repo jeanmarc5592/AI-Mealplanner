@@ -1,13 +1,5 @@
 import { NavLink } from "./types";
 
-export const HomeLink: NavLink = {
-  title: 'Home', 
-  href: '/', 
-  isActive: function (path: string) {
-    return path === this.href;
-  }
-};
-
 export const MealPlansLink: NavLink = {
   title: 'Meal Plans', 
   href: '/meal-plans',
@@ -17,7 +9,6 @@ export const MealPlansLink: NavLink = {
 };
 
 export const LINKS: NavLink[] = [
-  HomeLink,
   MealPlansLink,
 ];
 
