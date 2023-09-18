@@ -23,7 +23,7 @@ const Actions: React.FC<MealPlanDetailPageActionsProps> = ({ id }) => {
   const deleteMealPlan = useMutation(api.mealPlans.deleteMealPlan);
   const dispatch = useAppDispatch();
 
-  const handleCancel = () => {
+  const handleBack = () => {
     router.push(MealPlansLink.href);
   };
 
@@ -42,9 +42,9 @@ const Actions: React.FC<MealPlanDetailPageActionsProps> = ({ id }) => {
       <Button
         variant='outlined' 
         sx={{ marginRight: '1rem' }}
-        onClick={handleCancel}
+        onClick={handleBack}
       >
-        Cancel
+        Back
       </Button>
       <Button
         variant='outlined' 

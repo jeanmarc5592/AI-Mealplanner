@@ -20,6 +20,10 @@ export type MealPlanDay = {
 export type MealPlan = {
   _id?: string;
   _creationTime?: string;
+  maxCalories: string;
+  maxCarbs: string;
+  maxProteins: string;
+  maxFats: string;
   name: string;
   content: MealPlanDay[];
 };

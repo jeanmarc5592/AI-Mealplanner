@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AutoAwesome } from "@mui/icons-material";
 import { useAppDispatch } from "@/hooks/store";
-import { MealPlanDay, addMealPlan, onMealPlanLoading } from "@/store/slices/mealPlanSlice";
+import { MealPlan, MealPlanDay, addMealPlan, onMealPlanLoading } from "@/store/slices/mealPlanSlice";
 import { useState } from "react";
 import { setErrorNotification, setSuccessNotification } from "@/store/slices/notificationSlice";
 
@@ -45,9 +45,18 @@ const MealPlanForm = () => {
 
       if (response.status === 200) {
         const responseData: { mealPlan: MealPlanDay[] } = await response.json();
+        
+        const newMealPlan: MealPlan = {
+          name: data.name,
+          maxCalories: data.calories,
+          maxCarbs: data.carbs,
+          maxProteins: data.proteins,
+          maxFats: data.fats,
+          content: responseData.mealPlan,
+        }
 
         dispatch(setSuccessNotification("Your meal plan was generated successfully!"));
-        dispatch(addMealPlan({ name: data.name, content: responseData.mealPlan }));
+        dispatch(addMealPlan(newMealPlan));
       } 
 
       if (response.status > 200) {

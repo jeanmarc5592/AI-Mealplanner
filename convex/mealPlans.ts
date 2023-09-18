@@ -4,6 +4,10 @@ import { v } from "convex/values";
 export const createMealPlan = mutation({
   args: {
     name: v.string(),
+    maxCalories: v.string(),
+    maxCarbs: v.string(),
+    maxProteins: v.string(),
+    maxFats: v.string(),
     content: v.array(
       v.object({
         day: v.string(),
@@ -35,6 +39,12 @@ export const getSingleMealPlan = query({
   },
   handler: async (ctx, args) => {
     return await ctx.db.get(args.id)
+  },
+});
+
+export const getMealPlans = query({
+  handler: async (ctx) => {
+    return await ctx.db.query('mealPlans').collect();
   },
 });
 
